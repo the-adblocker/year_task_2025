@@ -68,12 +68,36 @@ def logout():
     session.pop('loggedin', None)
     session.pop('id', None)
     session.pop('username', None)
-    return redirect(url_for('login'))
+    return redirect(url_for('index'))
 
 @app.route('/home')
 def home():
     if 'loggedin' in session:
         return render_template('home.html', username=session['username'])
+    return redirect(url_for('login'))
+
+@app.route('/browse')
+def browse():
+    if 'loggedin' in session:
+        game_name=[]
+        game_desc=[]
+        game_img=[]
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute("SELECT * FROM game WHERE game_id=(SELECT max(game_id) FROM game);")
+        gameidget = cursor.fetchone()
+        game_ids = gameidget['game_id']
+        
+        # cursor.execute('SELECT * FROM game WHERE game_name = %s', (game_name))
+        for i in range(1, game_ids+1):
+            cursor.execute(f"SELECT * FROM game WHERE game_id = '{i}'")
+            game = cursor.fetchone()
+            game_name.append(game['game_name'])
+            game_desc.append(game['game_desc'])
+            game_img.append(game['game_img'])
+
+        # content = f"<section id='egggame' class='gamesection'> <h3>Survival egg</h3> <p>{ game_name[0] }</p> <div class='img_txt'> <img src='static/img/{game_img[0]}' alt='egg jumping'> <p>{game_desc[0]}</p> </div> <button>add to library</button> </section>"
+
+        return render_template('browse.html', username=session['username'],gname=game_name,gdesc=game_desc,gimg=game_img)
     return redirect(url_for('login'))
 
 
