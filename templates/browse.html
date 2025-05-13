@@ -4,10 +4,13 @@
     <title>Login</title>
 </head>
 <body>
+    <header>
+        <img id="toplogo" src="static/img/coal_logo_fiery.png" alt="coal logo">
+    </header>
     <a href="/home"><button>home</button></a>
     <h1>games</h1>
     <div id="gamelist">
-        <section id="egggame" class="gamesection">
+        <!-- <section id="egggame" class="gamesection">
             <h3>Survival egg</h3>
             <p>{{ gname[0] }}</p>
             <div class="img_txt">
@@ -15,7 +18,17 @@
                 <p>{{ gdesc[0] }}</p>    
             </div>
             <button>add to library</button>
-        </section>
+        </section> -->
+        {% for glen in glen %}
+            <section id="egggame" class="gamesection">
+                <h3>{{ gname[glen] }}</h3>
+                <div class="img_txt">
+                    <img src="static/img/{{ gimg[glen] }}" alt="{{ gimg[glen]}}">
+                    <p>{{ gdesc[glen] }}</p>    
+                </div>
+                <button formmethod="post" id="button{{ gid }}" value="{{ gid }}">add to library</button>
+            </section>
+        {% endfor %}
     </div>
 
     <link rel="stylesheet" href="static/style/style.css">

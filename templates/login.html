@@ -4,10 +4,14 @@
     <title>Login</title>
 </head>
 <body>
+    <header>
+        <img id="toplogo" src="static/img/coal_logo_fiery.png" alt="coal logo">
+        <h1>Coal games</h1>
+    </header>
     <a href="/"><button>back</button></a>
     <form method="post" action="/login">
         <h2>Login</h2>
-        <a href="/signup">signup</a>
+        <a href="/signup"><button>signup</button></a>
         <p>{{ msg }}</p>
         <label for="username">Username:</label>
         <input type="text" name="username" id="username" required><br>
@@ -15,5 +19,7 @@
         <input type="password" name="password" id="password" required><br>
         <input type="submit" value="Login">
     </form>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+
 </body>
 </html>

@@ -4,11 +4,15 @@
     <title>Login</title>
 </head>
 <body>
+    <header>
+        <img id="toplogo" src="static/img/coal_logo_fiery.png" alt="coal logo">
+        <h1>Coal games</h1>
+    </header>
     <a href="/"><button>back</button></a>
 
     <form method="post" action="/signup">
         <h2>Sign Up</h2>
-        <a href="/login">log in</a>
+        <a href="/login"><button>Log in</button></a>
         <p>{{ msg }}</p>
         <label for="first_name">First Name:</label>
         <input type="text" name="first_name" id="first_name" required><br>
@@ -26,5 +30,7 @@
         <input type="email" name="email" id="email" required><br>
         <input type="submit" value="Sign Up">
     </form>
+    <link rel="stylesheet" href="static/style/style.css">
+
 </body>
 </html>

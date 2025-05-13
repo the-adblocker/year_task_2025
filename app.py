@@ -8,6 +8,8 @@ app = Flask(__name__)
 
 app.secret_key = 'your secret key'
 
+app.static_folder = 'static'
+
 
 # correct database
 app.config['MYSQL_HOST'] = 'localhost'
@@ -79,9 +81,12 @@ def home():
 @app.route('/browse')
 def browse():
     if 'loggedin' in session:
+        game_id=[]
         game_name=[]
         game_desc=[]
         game_img=[]
+        gameamount=[]
+        looped=0
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute("SELECT * FROM game WHERE game_id=(SELECT max(game_id) FROM game);")
         gameidget = cursor.fetchone()
@@ -91,14 +96,20 @@ def browse():
         for i in range(1, game_ids+1):
             cursor.execute(f"SELECT * FROM game WHERE game_id = '{i}'")
             game = cursor.fetchone()
+            game_id.append(game['game_name'])
             game_name.append(game['game_name'])
             game_desc.append(game['game_desc'])
             game_img.append(game['game_img'])
+            gameamount.append(looped)
+            looped+=1
 
         # content = f"<section id='egggame' class='gamesection'> <h3>Survival egg</h3> <p>{ game_name[0] }</p> <div class='img_txt'> <img src='static/img/{game_img[0]}' alt='egg jumping'> <p>{game_desc[0]}</p> </div> <button>add to library</button> </section>"
+        # if request.method=='POST':
+            
 
-        return render_template('browse.html', username=session['username'],gname=game_name,gdesc=game_desc,gimg=game_img)
-    return redirect(url_for('login'))
+
+    return render_template('browse.html', username=session['username'],gname=game_name,gdesc=game_desc,gimg=game_img,glen=gameamount, gid=game_id)
+    # return redirect(url_for('login'))
 
 
 ##I'm sorry young me
