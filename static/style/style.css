@@ -1,0 +1,68 @@
+header{
+    background-color: #32075a;
+    padding: 2%;
+    text-align: left;
+    color: #D5C0F8;
+    font-size: 30px;
+}
+
+#toplogo{
+    height: 70px;
+}
+
+body{
+    background-color: #1f0933;
+    color: #D5C0F8;
+}
+
+.gamesection{
+    background: #D5C0F8;                
+    padding: 20px;
+    width: 700px;
+    line-height: 1.7em;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+.gamesection p{
+    color: #190933;
+}
+.gamesection h3{
+    color: #190933;
+}
+.gamesection p{
+    color: #190933;
+}
+
+button{
+    background-color: #D5C0F8;
+    color: #190933;
+    border-radius: 10px;
+    border-color: #9F87AF;
+    border-style: solid;
+    /* transition-duration: 0.2s; */
+
+}
+button:hover{
+    background-color: #9F87AF;
+    border-color: #190933;
+
+}
+button:active {
+    color: #D5C0F8;
+    background-color: #190933;
+    border-color: #190933;
+    transform: translateY(1px);
+}
+
+.img_txt{
+    display: flex;
+    margin: 5%;
+    column-gap: 2%;
+    justify-content: space-between;
+
+}
+
+.img_txt img{
+    border-radius: 10%;
+}
+
