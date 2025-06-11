@@ -24,16 +24,16 @@ CREATE TABLE account IF NOT EXISTS(
 );
 
 
-CREATE TABLE game IF NOT EXISTS(
+CREATE TABLE game (
     game_id int NOT NULL AUTO_INCREMENT,
     game_name VARCHAR(255),
     game_desc VARCHAR(255),
     game_img VARCHAR(255),
-    PRIMARY KEY (id)
+    PRIMARY KEY (game_id)
 );
 
 
-CREATE TABLE scores IF NOT EXISTS(
+CREATE TABLE scores (
     score_id int NOT NULL AUTO_INCREMENT,
     score int(10),
     current_timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
